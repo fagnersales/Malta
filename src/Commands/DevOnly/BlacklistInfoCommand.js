@@ -74,7 +74,7 @@ async execute(ctx) {
             await UserFetch.then(u => UserFetch = u).catch(e => UserFetch = null)
         }
 
-        if(!UserFetch) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum usuário parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo menções, IDs ou nomes`)
+        if(!UserFetch) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum usuário parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por menções, IDs ou nomes`)
 
         let uRes = await this.client.database.user.findOne({ _id: UserFetch.id })
 

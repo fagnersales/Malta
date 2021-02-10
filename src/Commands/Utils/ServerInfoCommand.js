@@ -21,7 +21,7 @@ async execute(ctx) {
     } else {
         Server = this.client.guilds.get(ctx.args[0]) || this.client.guilds.find(s => s.name.toLowerCase().includes(ctx.args[0].toLowerCase()))
     }
-    if(!Server) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum servidor parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo IDs ou nomes`)
+    if(!Server) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum servidor parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por IDs ou nomes`)
 
         let Members = Server.memberCount;
         let Bots = Server.members.filter(a => a.user.bot).length;

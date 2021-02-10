@@ -25,7 +25,7 @@ async execute(ctx) {
 
     let ServerBanner = ServerBanner.dynamicBannerURL()
 
-    if(!ServerBanner) return ctx.msg.channel.createMessage(`Procurei, mas não achei nenhum banner de servidor em \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\``)
+    if(!ServerBanner) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum servidor parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por IDs ou nomes`)
     
     ctx.msg.channel.createMessage({
         embed: {

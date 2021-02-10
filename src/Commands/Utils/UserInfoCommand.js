@@ -28,7 +28,7 @@ async execute(ctx) {
     if(User instanceof Promise) {
         await User.then(u => User = u).catch(e => User = null)
     }
-    if(!User) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum usuário parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo menções, IDs ou nomes`)
+    if(!User) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum usuário parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por menções, IDs ou nomes`)
 
     if(ctx.msg.channel.guild.members.has(User.id)) {
         let Member

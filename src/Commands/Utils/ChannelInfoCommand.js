@@ -23,7 +23,7 @@ async execute(ctx) {
         Channel = ctx.msg.channelMentions[0] || this.client.getChannel(ctx.args[0])
     }
 
-    if(!Channel) return ctx.msg.channel.createMessage(`Procurei, procurei, mas não achei nenhum canal parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por IDs, nomes ou menções`)
+    if(!Channel) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum canal parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por menções ou IDs`)
     
     const boolean = {
         true: "Sim",
