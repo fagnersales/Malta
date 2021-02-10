@@ -1,0 +1,27 @@
+{
+  "name": "malta",
+  "version": "1.0.1",
+  "description": "A Simple Moderation Discord Bot",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "eris": "github:abalabahaha/eris#dev",
+    "eris-collector": "^1.0.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLuisBR/Malta.git"
+  },
+  "author": "Malta Team",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/MrLuisBR/Malta/issues"
+  },
+  "homepage": "https://github.com/MrLuisBR/Malta#readme"
+}
