@@ -1,5 +1,4 @@
 const Command = require("../../Structures/Command");
-const formatTime = require("../../misc/formatTime")
 
 module.exports = class ChannelInfoCommand extends Command {
 constructor(client) {
@@ -20,7 +19,7 @@ async execute(ctx) {
     if(!ctx.args[0]) {
         Channel = ctx.msg.channel
     } else {
-        Channel = ctx.msg.channelMentions[0] || this.client.getChannel(ctx.args[0])
+        Channel = this.client.getChannel(ctx.msg.channelMentions[0]) || this.client.getChannel(ctx.args[0])
     }
 
     if(!Channel) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum canal parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por menções ou IDs`)
@@ -28,11 +27,12 @@ async execute(ctx) {
     const boolean = {
         true: "Sim",
         false: "Não",
-        null: "Nenhum"
+        null: "Nenhum",
+        undefined: "Não"
     }
 
     let Name = Channel.name;
-    let Created = formatTime(Channel.createdAt);
+    let Created = this.formattime.date(Channel.createdAt);
     let Nsfw = boolean[Channel.nsfw];
     let Id = Channel.id;
     let Topic = Channel.topic ? Channel.topic : `Nenhum`;
@@ -58,7 +58,7 @@ async execute(ctx) {
                     {
                         name: `🔞 Nsfw?`,
                         value: `${Nsfw}`,
-                        inline: false
+                        inline: true
                     },
                     {
                         name: `🐌 SlowMode`,
@@ -75,8 +75,8 @@ async execute(ctx) {
                     }
                 ],
                 footer: {
-                    text: `${msg.author.username}#${msg.author.discriminator}`,
-                    icon_url: msg.author.dynamicAvatarURL(),
+                    text: `${ctx.msg.author.username}#${ctx.msg.author.discriminator}`,
+                    icon_url: ctx.msg.author.dynamicAvatarURL(),
                 }}
             })
         break;
@@ -108,11 +108,12 @@ async execute(ctx) {
                     },
                     {
                         name: `👤 Limite de usuários`,
-                        value: `${UserLimit} usuários`
+                        value: `${UserLimit} usuários`,
+                        inline: true
                     },
                     {
                         name: `👥 Usuários`,
-                        value: `${Voicemembers}`
+                        value: `${Voicemembers}`,
                     },
                     {
                         name: `📆 Criado há`,

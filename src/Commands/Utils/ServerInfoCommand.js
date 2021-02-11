@@ -1,5 +1,4 @@
 const Command = require("../../Structures/Command");
-const formatTime = require("../../misc/formatTime")
 
 module.exports = class ServerInfoCommand extends Command {
 constructor(client) {
@@ -52,7 +51,7 @@ async execute(ctx) {
 
         let ServerReg = região[Server.region];
         let SvLevel = Server.premiumTier === 1 ? `| <:Booster:782920068245094400>` : Server.premiumTier === 2 ? `| <:Booster:782920068245094400>` : Server.premiumTier === 3 ? `| <:Booster:782920068245094400>` : ''
-        let Created = formatTime(Server.createdAt)
+        let Created = this.formattime.date(Server.createdAt)
     
         ctx.msg.channel.createMessage({
             embed: {

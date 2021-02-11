@@ -1,4 +1,3 @@
-const formatTime = require('../../misc/formatTime');
 const Command = require("../../Structures/Command");
 
 module.exports = class RoleInfoCommand extends Command {
@@ -19,7 +18,7 @@ async execute(ctx) {
 
     if(!ctx.args[0]) return;
 
-    let Role = ctx.msg.channel.guild.roles.get(ctx.args[0]) || ctx.msg.roleMentions[0] || ctx.msg.channel.guild.roles.find(s => s.name.toLowerCase().includes(ctx.args[0].toLowerCase()))
+    let Role = ctx.msg.channel.guild.roles.get(ctx.args[0]) || ctx.msg.channel.guild.roles.get(ctx.msg.roleMentions[0]) || ctx.msg.channel.guild.roles.find(s => s.name.toLowerCase().includes(ctx.args[0].toLowerCase()))
 
     if(!Role) return ctx.msg.channel.createMessage(`<:lupa:808665984616759306> \*\*|\*\* Procurei, procurei, mas não achei nenhum cargo parecido com \`${ctx.args[0].replace(/`/g, '').slice(0, 200)}\`, nem mesmo por menções, IDs ou nomes`)
 
@@ -28,7 +27,7 @@ async execute(ctx) {
         true: "Sim"
     }
 
-    let Created = formatTime(Role.createdAt)
+    let Created = this.formattime.date(Role.createdAt)
     let Id = Role.id
 
     let Hoisted = status[Role.hoist]

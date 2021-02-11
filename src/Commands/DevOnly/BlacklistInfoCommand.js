@@ -1,5 +1,4 @@
 const { ReactionCollector } = require('eris-collector');
-const formatTime = require("../../misc/formatTime")
 const Command = require("../../Structures/Command");
 
 module.exports = class BlackListInfoCommand extends Command {
@@ -44,7 +43,7 @@ async execute(ctx) {
                 },
                 {
                     name: `📆 Banido há`,
-                    value: `${formatTime(parseInt(BanDate))}`,
+                    value: `${this.formattime.date(parseInt(BanDate))}`,
                 }
             ],
             footer: {

@@ -1,6 +1,8 @@
 module.exports = class Command {
     constructor(client, options) {
         this.client = client;
+        this.formattime = require('../scripts/formatTime');
+        this._ = require('lodash');
         this.commandSettings = {
             name: options.name,
             aliases: options.aliases || [],

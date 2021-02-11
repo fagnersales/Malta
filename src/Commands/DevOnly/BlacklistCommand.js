@@ -1,6 +1,5 @@
 const moment = require("moment");
 const { ReactionCollector } = require('eris-collector');
-const formatTime = require("../../misc/formatTime")
 const Command = require("../../Structures/Command");
 moment.locale("pt-BR")
 
@@ -36,7 +35,7 @@ async execute(ctx) {
             gRes = await this.client.database.guild.findOne({ _id: Server.id }) 
         };
 
-        if(gRes.Blacklist.motivo) return ctx.msg.channel.createMessage(`🙅‍♀️ \*\*|\*\* O servidor já está banido\nBanido pelo motivo de:\`${gRes.Blacklist.motivo}\`\nBanido há: ${moment(gRes.Blacklist.dateBlacklist).format('LLLL')} \`(${formatTime(gRes.Blacklist.dateBlacklist)})`)
+        if(gRes.Blacklist.motivo) return ctx.msg.channel.createMessage(`🙅‍♀️ \*\*|\*\* O servidor já está banido\nBanido pelo motivo de:\`${gRes.Blacklist.motivo}\`\nBanido há: ${moment(gRes.Blacklist.dateBlacklist).format('LLLL')} \`(${this.formattime.date(gRes.Blacklist.dateBlacklist)})`)
 
         let uRes = await this.client.database.user.findOne({ _id: Server.ownerID });
 

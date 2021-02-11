@@ -20,7 +20,7 @@ module.exports = new Schema({
         },
     },
     economy: {
-        coins: {
+        cookies: {
             type: Number,
             default: 0,
         },

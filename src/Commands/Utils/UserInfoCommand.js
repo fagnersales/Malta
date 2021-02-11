@@ -1,4 +1,3 @@
-const formatTime = require('../../misc/formatTime');
 const Command = require("../../Structures/Command");
 
 module.exports = class UserInfoCommand extends Command {
@@ -59,11 +58,11 @@ async execute(ctx) {
                     },
                     {
                         name: `📆 Criado há`,
-                        value: `${formatTime(User.createdAt)}`
+                        value: `${this.formattime.date(User.createdAt)}`
                     },
                     {
                         name: `⏰ Entrou há`,
-                        value: `${formatTime(Member.joinedAt)}`
+                        value: `${this.formattime.date(Member.joinedAt)}`
                     }
                 ],
                 footer: {
