@@ -1,23 +1,33 @@
-const { readdir } = require('fs')
+const { readdirSync } = require('fs')
 
 module.exports = class CommandsLoader {
     constructor(client) {
-        readdir("./src/Commands", (err, f) => {
-            if(err) throw new Error("CommandLoader Error: " + err)
-            f.forEach(category => {
-                readdir(`./src/Commands/${category}`, (err, cmd) => {
-                    cmd.forEach(cmd => {
-                        if(err) throw new Error(err)
-                        const Command = require(`../Commands/${category}/${cmd}`)
-                        delete require.cache[require.resolve(`../Commands/${category}/${cmd}`)]
+        const categoriesPath = "./src/Commands";
 
-                        const command = new Command(client);
-                        client.commands.set(command.commandSettings.name, command)
+        const categories = readdirSync(categoriesPath);
+        if (!categories) throw new Error(`CommandLoader Error: No such file on '${categoriesPath}'`);
 
-                        command.commandSettings.aliases.forEach(alias => client.aliases.set(alias, command.commandSettings.name))
-                    })
-                })
-            })
-        })
+        const forEachCategory = (category) => {
+
+            const forEachCommand = (command) => {
+                const Command = require(`../Commands/${category}/${command}`);
+
+                delete require.cache[require.resolve(`../Commands/${category}/${command}`)];
+
+                const command = new Command(client);
+                client.commands.set(command.commandSettings.name, command);
+
+                command.commandSettings.aliases.forEach(alias => client.aliases.set(alias, command.commandSettings.name));
+            }
+
+            const commandsPath = `./src/Commands/${category}`;
+
+            const commands = readdirSync(commandsPath);
+            if (!commands) return console.log(`CommandLoader Warn: Category '${category}' is empty`);
+
+            commands.forEach(forEachCommand);
+        }
+
+        categories.forEach(forEachCategory);
     }
 }
